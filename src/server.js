@@ -14,24 +14,24 @@ import Poster from "./services/poster/poster.js"
 
 
 const server = express();
-// const whiteList = [process.env.DEV, process.env.PRO]
-// const corsOpts = {
-//     origin: function (origin, next) {
-//         console.log('ORIGIN --> ', origin)
-//         if (!origin || whiteList.indexOf(origin) !== -1) {
-//             next(null, true)
-//         } else {
-//             next(new Error(`Origin ${origin} not allowed!`))
-//         }
+const whiteList = [process.env.DEV, process.env.PRO]
+const corsOpts = {
+    origin: function (origin, next) {
+        console.log('ORIGIN --> ', origin)
+        if (!origin || whiteList.indexOf(origin) !== -1) {
+            next(null, true)
+        } else {
+            next(new Error(`Origin ${origin} not allowed!`))
+        }
 
-//     }
-// }
+    }
+}
 server.use(express.static(publicFolderPath))
-// server.use(cors(corsOpts))
-server.use(cors())
+server.use(cors(corsOpts))
+// server.use(cors())
 server.use(express.json());
 server.use("/media", Media);
-server.use("/media/:imdbID/poster", Poster)
+server.use("/poster", Poster)
 server.use(notFoundErrorHandler)
 server.use(badRequestErrorHandler)
 server.use(forbiddenErrorHandler)
