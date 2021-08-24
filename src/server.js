@@ -37,11 +37,11 @@ server.use(badRequestErrorHandler)
 server.use(forbiddenErrorHandler)
 server.use(genericServerErrorHandler)
 
-// const port = process.env.PORT
-const port = 3005
+const port = process.env.PORT
+// const port = 3005
 
 server.listen(port, () => {
-    console.log('server is running on port 3005');
+    console.log('server is running on port ' + port);
 })
 console.table(listEndpoints(server))
 server.on("error", (error) => { console.log(error) })
