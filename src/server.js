@@ -27,8 +27,8 @@ const corsOpts = {
     }
 }
 server.use(express.static(publicFolderPath))
-//server.use(cors(corsOpts))
-server.use(cors())
+server.use(cors(corsOpts))
+// server.use(cors())
 server.use(express.json());
 server.use("/media", Media);
 server.use("/poster", Poster)
